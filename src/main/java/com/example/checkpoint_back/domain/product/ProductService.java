@@ -63,7 +63,7 @@ public class ProductService {
         return categoryRepository.save(category);
     }
 
-    public void addCategoryToProduct(Long productId, Long categoryId) {
+    public Product addCategoryToProduct(Long productId, Long categoryId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new EntityNotFoundException("Store with id " + productId + " not found. 😤☹️"));
 
@@ -71,6 +71,7 @@ public class ProductService {
                 .orElseThrow(() -> new EntityNotFoundException("Store with id " + categoryId + " not found. 😤☹️"));
 
         product.getCategories().add(category);
-        productRepository.save(product);
+
+        return productRepository.save(product);
     }
 }

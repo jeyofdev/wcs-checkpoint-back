@@ -35,8 +35,13 @@ public class ProductController {
     }
 
     @PostMapping("/{productId}/categories/{categoryId}")
-    public void addCategoryToProduct(@PathVariable Long productId, @PathVariable Long categoryId) {
+    public ResponseEntity<ProductDTO> addCategoryToProduct(@PathVariable Long productId, @PathVariable Long categoryId) {
         productService.addCategoryToProduct(productId, categoryId);
+
+        Product product = productService.findById(productId);
+        ProductDTO productDTO = ProductDTO.mapFromEntity(product);
+
+        return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/")
