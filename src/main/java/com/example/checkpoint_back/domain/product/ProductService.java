@@ -1,5 +1,7 @@
 package com.example.checkpoint_back.domain.product;
 
+import com.example.checkpoint_back.domain.category.Category;
+import com.example.checkpoint_back.domain.category.CategoryRepository;
 import com.example.checkpoint_back.domain.store.Store;
 import com.example.checkpoint_back.domain.store.StoreRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,6 +17,9 @@ public class ProductService {
 
     @Autowired
     private StoreRepository storeRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -52,5 +57,20 @@ public class ProductService {
         productToUpdated.setImgUrl(product.getImgUrl());
 
         return productRepository.save(productToUpdated);
+    }
+
+    public Category addCourse(Category category) {
+        return categoryRepository.save(category);
+    }
+
+    public void addCategoryToProduct(Long productId, Long categoryId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("Store with id " + productId + " not found. 😤☹️"));
+
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new EntityNotFoundException("Store with id " + categoryId + " not found. 😤☹️"));
+
+        product.getCategories().add(category);
+        productRepository.save(product);
     }
 }

@@ -1,5 +1,8 @@
 package com.example.checkpoint_back.domain.product;
 
+import com.example.checkpoint_back.domain.category.Category;
+import com.example.checkpoint_back.domain.category.CategoryDTO;
+import com.example.checkpoint_back.domain.category.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +18,25 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @PostMapping("/store/{storeId}")
     public ResponseEntity<ProductDTO> add(@RequestBody Product product, @PathVariable Long storeId) {
         Product newProduct = productService.add(product, storeId);
         ProductDTO productDTO = ProductDTO.mapFromEntity(newProduct);
 
         return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/categories")
+    public Category addCourse(@RequestBody Category category) {
+        return productService.addCourse(category);
+    }
+
+    @PostMapping("/{productId}/categories/{categoryId}")
+    public void addCategoryToProduct(@PathVariable Long productId, @PathVariable Long categoryId) {
+        productService.addCategoryToProduct(productId, categoryId);
     }
 
     @GetMapping("/")

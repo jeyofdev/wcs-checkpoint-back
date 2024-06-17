@@ -11,7 +11,8 @@ public record ProductDTO(
     double price,
     String description,
     String imgUrl,
-    Long storeId
+    Long storeId,
+    List<Long> categoryIds
 
 ) {
         public static ProductDTO mapFromEntity(Product product) {
@@ -21,7 +22,8 @@ public record ProductDTO(
                     product.getPrice(),
                     product.getDescription(),
                     product.getImgUrl(),
-                    product.getStore().getId()
+                    product.getStore().getId(),
+                    product.getCategories().stream().map(Category::getId).toList()
 
             );
         }

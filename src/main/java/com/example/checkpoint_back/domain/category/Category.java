@@ -21,4 +21,7 @@ public class Category {
 
     @Column(name="img_url", columnDefinition = "TEXT", nullable = false)
     private String imgUrl;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products = new ArrayList<>();
 }
