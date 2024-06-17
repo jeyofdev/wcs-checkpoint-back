@@ -1,0 +1,9 @@
+spring.application.name=
+#MySQL Configuration
+spring.datasource.url=j
+spring.datasource.username=
+spring.datasource.password=
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create-drop
+#spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
