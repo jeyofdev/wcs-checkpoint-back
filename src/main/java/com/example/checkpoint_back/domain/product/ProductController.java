@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -44,7 +45,7 @@ public class ProductController {
         return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ProductDTO>> findAll() {
         List<Product> productList = productService.findAll();
         List<ProductDTO> productDTOList = productList.stream().map(ProductDTO::mapFromEntity).toList();

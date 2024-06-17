@@ -2,6 +2,8 @@ package com.example.checkpoint_back.domain.product;
 
 import com.example.checkpoint_back.domain.category.Category;
 import com.example.checkpoint_back.domain.store.Store;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -39,5 +41,6 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    @JsonIgnore
     private List<Category> categories = new ArrayList<>();
 }

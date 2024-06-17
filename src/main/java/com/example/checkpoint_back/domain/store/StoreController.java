@@ -1,8 +1,5 @@
 package com.example.checkpoint_back.domain.store;
 
-import com.example.checkpoint_back.domain.store.Store;
-import com.example.checkpoint_back.domain.store.StoreDTO;
-import com.example.checkpoint_back.domain.store.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/store")
 @RequiredArgsConstructor
+@CrossOrigin
 public class StoreController {
     @Autowired
     private StoreService storeService;

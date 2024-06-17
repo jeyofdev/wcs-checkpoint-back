@@ -1,6 +1,8 @@
 package com.example.checkpoint_back.domain.category;
 
 import com.example.checkpoint_back.domain.product.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,5 +26,6 @@ public class Category {
     private String imgUrl;
 
     @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();
 }

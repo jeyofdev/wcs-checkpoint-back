@@ -12,11 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/category")
 @RequiredArgsConstructor
+@CrossOrigin
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CategoryDTO> add(@RequestBody Category category) {
         Category newCategory = categoryService.add(category);
         CategoryDTO categoryDTO = CategoryDTO.mapFromEntity(newCategory);
@@ -24,7 +25,7 @@ public class CategoryController {
         return new ResponseEntity<>(categoryDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll() {
         List<Category> categoryList = categoryService.findAll();
         List<CategoryDTO> categoryDTOList = categoryList.stream().map(CategoryDTO::mapFromEntity).toList();
