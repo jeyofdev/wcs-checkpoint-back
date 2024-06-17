@@ -30,7 +30,7 @@ public class CategoryService {
         Category categoryToDeleted = findById(id);
         categoryRepository.deleteById(id);
 
-        return "the category " + categoryToDeleted.getName() + " has been deleted successfully.";
+        return "Category " + categoryToDeleted.getName() + " has been deleted successfully.";
     }
 
     public Category updateById(Category category, Long id) {

@@ -29,7 +29,7 @@ public class ProductService {
     public String deleteById(Long id) {
         Product productToDeleted = findById(id);
         productRepository.deleteById(id);
-        return "the product " + productToDeleted.getName() + " has been deleted successfully.";
+        return "Product " + productToDeleted.getName() + " has been deleted successfully.";
     }
 
     public Product updateById(Product product, Long id) {

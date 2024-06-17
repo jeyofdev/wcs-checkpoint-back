@@ -35,9 +35,9 @@ public class CategoryController {
     @GetMapping("/{categoryId}")
     public ResponseEntity<CategoryDTO> findById(@PathVariable Long categoryId) {
         Category category = categoryService.findById(categoryId);
-        CategoryDTO regionDTO = CategoryDTO.mapFromEntity(category);
+        CategoryDTO categoryDTO = CategoryDTO.mapFromEntity(category);
 
-        return new ResponseEntity<>(regionDTO, HttpStatus.OK);
+        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{categoryId}")

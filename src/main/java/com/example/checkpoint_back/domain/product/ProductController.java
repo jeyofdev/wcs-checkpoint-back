@@ -34,9 +34,9 @@ public class ProductController {
     @GetMapping("/{productId}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long productId) {
         Product product = productService.findById(productId);
-        ProductDTO regionDTO = ProductDTO.mapFromEntity(product);
+        ProductDTO productDTO = ProductDTO.mapFromEntity(product);
 
-        return new ResponseEntity<>(regionDTO, HttpStatus.OK);
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{productId}")
