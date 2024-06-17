@@ -26,11 +26,11 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Category deleteById(Long id) {
+    public String deleteById(Long id) {
         Category categoryToDeleted = findById(id);
         categoryRepository.deleteById(id);
 
-        return categoryToDeleted;
+        return "the category " + categoryToDeleted.getName() + " has been deleted successfully.";
     }
 
     public Category updateById(Category category, Long id) {

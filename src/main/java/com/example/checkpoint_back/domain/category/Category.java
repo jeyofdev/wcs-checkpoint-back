@@ -1,9 +1,7 @@
 package com.example.checkpoint_back.domain.category;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Entity

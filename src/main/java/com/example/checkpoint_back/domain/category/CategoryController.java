@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CategoryDTO>> getAll() {
+    public ResponseEntity<List<CategoryDTO>> findAll() {
         List<Category> categoryList = categoryService.findAll();
         List<CategoryDTO> categoryDTOList = categoryList.stream().map(CategoryDTO::mapFromEntity).toList();
 
@@ -41,8 +41,9 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{categoryId}")
-    public void delete(@PathVariable Long categoryId) {
-        categoryService.deleteById(categoryId);
+    public ResponseEntity<String> delete(@PathVariable Long categoryId) {
+        String result = categoryService.deleteById(categoryId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PutMapping("/{categoryId}")
