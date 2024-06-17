@@ -40,6 +40,7 @@ public class StoreService {
         storeToUpdated.setAddress(store.getAddress());
         storeToUpdated.setDescription(store.getDescription());
         storeToUpdated.setImgUrl(store.getImgUrl());
+        storeToUpdated.setProductList(store.getProductList());
 
         return storeRepository.save(storeToUpdated);
     }

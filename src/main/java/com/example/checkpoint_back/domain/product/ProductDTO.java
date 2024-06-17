@@ -1,12 +1,18 @@
 package com.example.checkpoint_back.domain.product;
 
 
+import com.example.checkpoint_back.domain.category.Category;
+
+import java.util.List;
+
 public record ProductDTO(
     Long id,
     String name,
     double price,
     String description,
-    String imgUrl
+    String imgUrl,
+    Long storeId
+
 ) {
         public static ProductDTO mapFromEntity(Product product) {
             return new ProductDTO(
@@ -14,7 +20,9 @@ public record ProductDTO(
                     product.getName(),
                     product.getPrice(),
                     product.getDescription(),
-                    product.getImgUrl()
+                    product.getImgUrl(),
+                    product.getStore().getId()
+
             );
         }
 }

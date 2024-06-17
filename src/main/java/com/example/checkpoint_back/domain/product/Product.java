@@ -1,8 +1,13 @@
 package com.example.checkpoint_back.domain.product;
 
+import com.example.checkpoint_back.domain.category.Category;
+import com.example.checkpoint_back.domain.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @RequiredArgsConstructor
@@ -23,4 +28,8 @@ public class Product {
 
     @Column(name = "img_url", columnDefinition = "TEXT", nullable = false)
     private String imgUrl;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "store_id")
+    private Store store;
 }

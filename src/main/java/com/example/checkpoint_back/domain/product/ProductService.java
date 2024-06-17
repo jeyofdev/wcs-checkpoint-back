@@ -1,5 +1,7 @@
 package com.example.checkpoint_back.domain.product;
 
+import com.example.checkpoint_back.domain.store.Store;
+import com.example.checkpoint_back.domain.store.StoreRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,9 @@ import java.util.List;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private StoreRepository storeRepository;
 
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -22,7 +27,13 @@ public class ProductService {
                 );
     }
 
-    public Product add(Product product) {
+    public Product add(Product product, Long storeId) {
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Store with id " + storeId + " not found. 😤☹️")
+                );
+
+        product.setStore(store);
         return productRepository.save(product);
     }
 
